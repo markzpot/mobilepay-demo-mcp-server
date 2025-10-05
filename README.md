@@ -79,58 +79,25 @@ curl "http://localhost:3000/products/search?query=headphones&limit=5"
 GET /health
 \`\`\`
 
-## Using with ChatGPT GPT Actions
+## OpenAPI Documentation
+
+The server includes auto-generated OpenAPI documentation using Zod schemas and Swagger UI.
+
+### Accessing the Documentation
 
 1. Start the server: `npm run start:api`
-2. In ChatGPT GPT editor, add a new action
-3. Use the OpenAPI schema below
-4. Configure the action to use the `/products/search` endpoint
+2. Open your browser to: `http://localhost:3000/api-docs`
+3. View the raw OpenAPI schema: `http://localhost:3000/api-docs/schema`
 
-### OpenAPI Schema for GPT Actions
+### Using with ChatGPT GPT Actions
 
-\`\`\`yaml
-openapi: 3.0.0
-info:
-  title: Product Search API
-  version: 1.0.0
-servers:
-  - url: http://localhost:3000
-paths:
-  /products/search:
-    get:
-      operationId: searchProducts
-      summary: Search for products
-      parameters:
-        - name: query
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Search query for products
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            default: 10
-          description: Maximum number of results
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  query:
-                    type: string
-                  count:
-                    type: integer
-                  results:
-                    type: array
-                    items:
-                      type: object
-\`\`\`
+1. Start the server: `npm run start:api`
+2. Download the OpenAPI schema from `http://localhost:3000/api-docs/schema`
+3. In ChatGPT GPT editor, add a new action
+4. Import the OpenAPI schema
+5. Configure the action to use the `/products/search` endpoint
+
+The OpenAPI schema is automatically generated from Zod schemas, ensuring type safety and consistency between validation and documentation.
 
 ## Usage with Claude Desktop
 

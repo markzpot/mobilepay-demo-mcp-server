@@ -8,7 +8,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { mockProducts, Product } from './mockData.js';
 import { CartManager } from './cartManager.js';
-import { startRestApi } from './restApi.js';
+import { startOpenApiServer } from './openapi-server.js';
 
 const cartManager = new CartManager();
 
@@ -296,9 +296,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 async function main() {
-  // Start REST API server if not in MCP-only mode
+  // Start OpenAPI server if not in MCP-only mode
   if (process.env.MCP_ONLY !== 'true') {
-    startRestApi();
+    startOpenApiServer();
   }
 
   // Start MCP server on stdio
